@@ -1,0 +1,105 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Delicate scroll. All rights reserved.
+ *  Core style
+ *--------------------------------------------------------------------------------------------*/
+/* Arrows */
+.delicate-scrollable-element > .scrollbar > .scra {
+	cursor: pointer;
+	font-size: 11px !important;
+}
+.delicate-scrollable-element > .visible {
+	opacity: 1;
+	background:rgba(0,0,0,0);
+	transition: opacity 100ms linear;
+}
+.delicate-scrollable-element > .invisible {
+	opacity: 0;
+	pointer-events: none;
+}
+.delicate-scrollable-element > .invisible.fade {
+	transition: opacity 800ms linear;
+}
+
+/* Shadow Style */
+.delicate-scrollable-element > .shadow {
+	position: absolute;
+	display: none;
+}
+.delicate-scrollable-element > .shadow.top {
+	display: block;
+	top: 0;
+	left: 3px;
+	height: 3px;
+	width: 100%;
+	box-shadow: #DDD 0 6px 6px -6px inset;
+}
+.delicate-scrollable-element > .shadow.left {
+	display: block;
+	top: 3px;
+	left: 0;
+	height: 100%;
+	width: 3px;
+	box-shadow: #DDD 6px 0 6px -6px inset;
+}
+.delicate-scrollable-element > .shadow.top-left-corner {
+	display: block;
+	top: 0;
+	left: 0;
+	height: 3px;
+	width: 3px;
+}
+.delicate-scrollable-element > .shadow.top.left {
+	box-shadow: #DDD 6px 6px 6px -6px inset;
+}
+
+/* ---------- Default Style ---------- */
+.theme .delicate-scrollable-element > .scrollbar > .slider {
+	background: rgba(100, 100, 100, .4);
+}
+.theme-dark .delicate-scrollable-element > .scrollbar > .slider {
+	background: rgba(121, 121, 121, .4);
+}
+.hc-black .delicate-scrollable-element > .scrollbar > .slider {
+	background: rgba(111, 195, 223, .6);
+}
+
+.delicate-scrollable-element > .scrollbar > .slider:hover {
+	background: rgba(100, 100, 100, .7);
+}
+.hc-black .delicate-scrollable-element > .scrollbar > .slider:hover {
+	background: rgba(111, 195, 223, .8);
+}
+
+.delicate-scrollable-element > .scrollbar > .slider.active {
+	background: rgba(0, 0, 0, .6);
+}
+.theme-dark .delicate-scrollable-element > .scrollbar > .slider.active {
+	background: rgba(191, 191, 191, .4);
+}
+.hc-black .delicate-scrollable-element > .scrollbar > .slider.active {
+	background: rgba(111, 195, 223, 1);
+}
+
+.theme-dark .delicate-scrollable-element .shadow.top {
+	box-shadow: none;
+}
+
+.theme-dark .delicate-scrollable-element .shadow.left {
+	box-shadow: #000 6px 0 6px -6px inset;
+}
+
+.theme-dark .delicate-scrollable-element .shadow.top.left {
+	box-shadow: #000 6px 6px 6px -6px inset;
+}
+
+.hc-black .delicate-scrollable-element .shadow.top {
+	box-shadow: none;
+}
+
+.hc-black .delicate-scrollable-element .shadow.left {
+	box-shadow: none;
+}
+
+.hc-black .delicate-scrollable-element .shadow.top.left {
+	box-shadow: none;
+}
