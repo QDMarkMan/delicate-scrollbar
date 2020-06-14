@@ -4,6 +4,9 @@
  *-------------------------------------------------------------------------------------------- */
 import { ScrollableElementOptions } from '../interface/options'
 import { FastDomNode, createFastDomNode } from '../utils/fastDomNode'
+const HIDE_TIMEOUT = 500;
+const SCROLL_WHEEL_SENSITIVITY = 50;
+const SCROLL_WHEEL_SMOOTH_SCROLL_ENABLED = true;
 export abstract class AbstractScrollableElement {
 
 	private readonly _options: ScrollableElementOptions;
@@ -35,7 +38,6 @@ export abstract class AbstractScrollableElement {
 	public readonly onWillScroll: Event<ScrollEvent> = this._onWillScroll.event;
 
 	protected constructor(element: HTMLElement, options: ScrollableElementCreationOptions, scrollable: Scrollable) {
-		super();
 		element.style.overflow = 'hidden';
 		this._options = resolveOptions(options);
 		this._scrollable = scrollable;
@@ -349,12 +351,12 @@ export abstract class AbstractScrollableElement {
 		this._hide();
 	}
 
-	private _onMouseOut(e: IMouseEvent): void {
+	private _onMouseOut(e: MouseEvent): void {
 		this._mouseIsOver = false;
 		this._hide();
 	}
 
-	private _onMouseOver(e: IMouseEvent): void {
+	private _onMouseOver(e: MouseEvent): void {
 		this._mouseIsOver = true;
 		this._reveal();
 	}
@@ -377,4 +379,43 @@ export abstract class AbstractScrollableElement {
 			this._hideTimeout.cancelAndSet(() => this._hide(), HIDE_TIMEOUT);
 		}
 	}
+}
+
+function resolveOptions(opts: ScrollableElementOptions): ScrollableElementOptions {
+	let result: ScrollableElementOptions = {
+		lazyRender: (typeof opts.lazyRender !== 'undefined' ? opts.lazyRender : false),
+		className: (typeof opts.className !== 'undefined' ? opts.className : ''),
+		useShadows: (typeof opts.useShadows !== 'undefined' ? opts.useShadows : true),
+		handleMouseWheel: (typeof opts.handleMouseWheel !== 'undefined' ? opts.handleMouseWheel : true),
+		flipAxes: (typeof opts.flipAxes !== 'undefined' ? opts.flipAxes : false),
+		alwaysConsumeMouseWheel: (typeof opts.alwaysConsumeMouseWheel !== 'undefined' ? opts.alwaysConsumeMouseWheel : false),
+		scrollYToX: (typeof opts.scrollYToX !== 'undefined' ? opts.scrollYToX : false),
+		mouseWheelScrollSensitivity: (typeof opts.mouseWheelScrollSensitivity !== 'undefined' ? opts.mouseWheelScrollSensitivity : 1),
+		fastScrollSensitivity: (typeof opts.fastScrollSensitivity !== 'undefined' ? opts.fastScrollSensitivity : 5),
+		scrollPredominantAxis: (typeof opts.scrollPredominantAxis !== 'undefined' ? opts.scrollPredominantAxis : true),
+		mouseWheelSmoothScroll: (typeof opts.mouseWheelSmoothScroll !== 'undefined' ? opts.mouseWheelSmoothScroll : true),
+		arrowSize: (typeof opts.arrowSize !== 'undefined' ? opts.arrowSize : 11),
+
+		listenOnDomNode: (typeof opts.listenOnDomNode !== 'undefined' ? opts.listenOnDomNode : null),
+
+		horizontal: (typeof opts.horizontal !== 'undefined' ? opts.horizontal : ScrollbarVisibility.Auto),
+		horizontalScrollbarSize: (typeof opts.horizontalScrollbarSize !== 'undefined' ? opts.horizontalScrollbarSize : 10),
+		horizontalSliderSize: (typeof opts.horizontalSliderSize !== 'undefined' ? opts.horizontalSliderSize : 0),
+		horizontalHasArrows: (typeof opts.horizontalHasArrows !== 'undefined' ? opts.horizontalHasArrows : false),
+
+		vertical: (typeof opts.vertical !== 'undefined' ? opts.vertical : ScrollbarVisibility.Auto),
+		verticalScrollbarSize: (typeof opts.verticalScrollbarSize !== 'undefined' ? opts.verticalScrollbarSize : 10),
+		verticalHasArrows: (typeof opts.verticalHasArrows !== 'undefined' ? opts.verticalHasArrows : false),
+		verticalSliderSize: (typeof opts.verticalSliderSize !== 'undefined' ? opts.verticalSliderSize : 0)
+	};
+
+	result.horizontalSliderSize = (typeof opts.horizontalSliderSize !== 'undefined' ? opts.horizontalSliderSize : result.horizontalScrollbarSize);
+	result.verticalSliderSize = (typeof opts.verticalSliderSize !== 'undefined' ? opts.verticalSliderSize : result.verticalScrollbarSize);
+
+	// Defaults are different on Macs
+	// if (platform.isMacintosh) {
+	// 	result.className += ' mac';
+	// }
+
+	return result;
 }
