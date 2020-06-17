@@ -5,6 +5,7 @@
 import { StandardWheelEvent } from '../utils/mouseEvent'
 import { ScrollbarState } from '../utils/scrollbarState'
 import { FastDomNode, createFastDomNode } from './../utils/fastDomNode';
+import { ScrollbarVisibility } from './scrollbar'
 
 /**
  * The orthogonal distance to the slider at which dragging "resets". This implements "snapping"
@@ -23,11 +24,6 @@ export interface ScrollbarHost {
 	onDragEnd(): void;
 }
 
-export const enum ScrollbarVisibility {
-	Auto = 1,
-	Hidden = 2,
-	Visible = 3
-}
 
 export interface AbstractScrollbarOptions {
 	lazyRender: boolean;
