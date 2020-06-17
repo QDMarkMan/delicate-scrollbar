@@ -17,7 +17,7 @@ export default class DelicateScrollbar {
    * init class
    * @param {*HTMLElement} el
    */
-  init(el) {
+  init() {
     // if (typeof el == 'string')
   }
 

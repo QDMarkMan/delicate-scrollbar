@@ -4,10 +4,10 @@
  *  @Des [resize helper].
  *-------------------------------------------------------------------------------------------- */
 /**
- * 
+ *
  * @param entries
  */
-export const resizeHandler = function (entries) {
+/* export const resizeHandler = function (entries) {
   for (const entry of entries) {
     const listeners = entry.target.__resizeListeners__ || []
     if (listeners.length > 0) {
@@ -16,4 +16,4 @@ export const resizeHandler = function (entries) {
       })
     }
   }
-}
+} */

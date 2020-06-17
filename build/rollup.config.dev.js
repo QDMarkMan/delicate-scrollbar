@@ -7,6 +7,7 @@ process.env.NODE_ENV = 'development'
 const path = require('path')
 const serve = require('rollup-plugin-serve')
 const configList = require('./rollup.config.base')
+const sourceMaps = require('rollup-plugin-sourcemaps')
 
 const resolveFile = function(filePath) {
   return path.join(__dirname, '..', filePath)
@@ -31,11 +32,12 @@ configList.map((config, index) => {
         serve({
           port: PORT,
           contentBase: [resolveFile('')]
-        })
+				}),
+				sourceMaps()
       ]
     ]
   }
-  
+
   return config
 })
 

@@ -4,7 +4,7 @@
  *-------------------------------------------------------------------------------------------- */
 const path = require('path')
 const buble = require('rollup-plugin-buble')
-const typescript = require('rollup-plugin-typescript2')
+const typescript = require('@rollup/plugin-typescript')
 const alias = require('@rollup/plugin-alias')
 
 const resolveFile = function(filePath) {
@@ -34,6 +34,7 @@ module.exports = [
 				]
 			}),
       typescript({
+				typescript: require('typescript'),
         tsconfig: "tsconfig.json"
       }),
       buble()
