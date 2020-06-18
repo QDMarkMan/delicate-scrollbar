@@ -41,6 +41,7 @@ export abstract class AbstractScrollableElement {
 	 * depend on Editor.
 	 */
 	public updateOptions(newOptions: ScrollableElementOptions): void {
+
 	}
 
 	public setRevealOnScroll(value: boolean) {
@@ -64,6 +65,8 @@ export abstract class AbstractScrollableElement {
 
 	}
 }
+
+
 
 function resolveOptions(opts: ScrollableElementOptions): ScrollableElementOptions {
 	let result: ScrollableElementOptions = {
