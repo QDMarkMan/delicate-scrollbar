@@ -48,6 +48,8 @@ export abstract class AbstractScrollbar {
 		this._host = opts.host;
 		this._shouldRender = !opts.lazyRender
 		this._scrollbarState = opts.scrollbarState
+		// 判断当前垂直/水平方向是否需要生成滚动条
+
 		// DOM
 		this.domNode = createFastDomNode(document.createElement('div'))
 		this.domNode.setAttribute('role', 'presentation');
