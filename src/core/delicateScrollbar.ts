@@ -9,7 +9,7 @@
  */
 export default class DelicateScrollbar {
   element: HTMLElement
-  constructor (el: any, options: Object) {
+  constructor (el: any, options: Record<string, any>) {
     // start
     this.element = typeof el === 'string' ? document.querySelector(el): el
   }
@@ -17,7 +17,7 @@ export default class DelicateScrollbar {
    * init class
    * @param {*HTMLElement} el
    */
-  init() {
+  init () {
     // if (typeof el == 'string')
   }
 
